@@ -1,7 +1,9 @@
 <template>
-    <button class="zw-button">
+    <button class="zw-button" :class="{'zw-button-icon-right':iconSide === 'right'}">
         <Icon v-if="icon" :name="icon" class="zw-button-icon"></Icon>
-        <slot></slot>
+        <span class="zw-button-text">
+            <slot></slot>
+        </span>
     </button>
 </template>
 
@@ -20,6 +22,13 @@
                 type: Boolean,
                 default: false,
             },
+            iconSide: {
+                type: String,
+                default: 'left',
+                validator(value){
+                    return ['left','right'].indexOf(value) !== -1
+                }
+            }
 
         },
     }
@@ -39,8 +48,26 @@
         &:hover{border-color: var(--border-color-hover,#666)}
         &:active{background: var(--button-active-bg,#eee)}
 
-        display: flex;
+        display: inline-flex;
         justify-content: center;
         align-items: center;
+        .zw-button-icon {
+            order: 1;
+            margin-right: .3em;
+        }
+        .zw-button-text {
+            order: 2;
+        }
+
+        &.zw-button-icon-right{
+            .zw-button-icon {
+                order: 2;
+                margin-left: .3em;
+                margin-right: 0;
+            }
+            .zw-button-text {
+                order: 1;
+            }
+        }
     }
 </style>
