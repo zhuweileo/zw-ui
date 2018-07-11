@@ -1,6 +1,6 @@
 <template>
     <svg class="zw-icon">
-        <use :xlink:href="'#zw-'+name" ></use>
+        <use :xlink:href="'#'+name" ></use>
     </svg>
 </template>
 
