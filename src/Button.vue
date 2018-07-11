@@ -1,5 +1,5 @@
 <template>
-    <button class="zw-button" :class="{'zw-button-icon-right':iconSide === 'right'}">
+    <button class="zw-button" :class="{'zw-button-icon-right':iconSide === 'right'}" @click="onClick">
         <Icon v-if="icon" :name="icon" class="zw-button-icon"></Icon>
         <span class="zw-button-text">
             <slot></slot>
@@ -30,6 +30,11 @@
                 }
             }
 
+        },
+        methods: {
+            onClick(e) {
+                this.$emit('click',e)
+            }
         },
     }
 </script>
